@@ -1,0 +1,154 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Horizon.ERPAcc2.Permissions
+@using Horizon.ERPAcc2.Web.Pages.FiscalYears
+@using Horizon.ERPAcc2.Web.Menus
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Horizon.ERPAcc2.Localization
+@inject IHtmlLocalizer<ERPAcc2Resource> L
+@inject IAuthorizationService Authorization
+@model IndexModel
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["FiscalYears"].Value;
+    PageLayout.Content.MenuItemName = ERPAcc2Menus.FiscalYears;
+}
+
+@section styles
+{
+@*//<suite-custom-code-block-1>*@
+@*//</suite-custom-code-block-1>*@
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/FiscalYears/index.js" />
+@*//<suite-custom-code-block-2>*@
+@*//</suite-custom-code-block-2>*@
+}
+
+@section content_toolbar {
+    <abp-button id="ExportToExcelButton" text="@L["ExportToExcel"].Value" icon="download" size="Small" button-type="Primary" />
+    @if (await Authorization.IsGrantedAsync(ERPAcc2Permissions.FiscalYears.Create))
+    {
+        <abp-button id="NewFiscalYearButton" text="@L["NewFiscalYear"].Value" icon="plus" size="Small" button-type="Primary" />
+    }
+@*//<suite-custom-code-block-3>*@
+@*//</suite-custom-code-block-3>*@
+}
+
+@*//<suite-custom-code-block-4>*@
+@*//</suite-custom-code-block-4>*@
+
+<abp-card>
+    <abp-card-body>
+		<abp-row class="mb-3">
+            <abp-column size-md="_12">
+                <form id="SearchForm" autocomplete="off">
+                    <div class="input-group">
+                        <input class="form-control page-search-filter-text" id="FilterText" placeholder="@L["Search"]"/>
+                        <abp-button button-type="Primary" type="submit" icon="search"/>
+                    </div>
+                </form>
+            </abp-column>
+            <abp-column size-md="_12" class="mt-3">
+                <a href="javascript:;" id="AdvancedFilterSectionToggler" class="text-decoration-none">@L["SeeAdvancedFilters"]</a>
+            </abp-column>
+        </abp-row>
+
+        <abp-row id="AdvancedFilterSection" style="display: none;">
+            <abp-column size="_3">
+                <abp-input asp-for="FiscalYearNameFilter" label="@L["FiscalYearName"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-date-picker auto-update-input="false" today-button-classes="btn-primary" asp-for="StartDateFilterMin" label="@L["MinStartDate"].Value" />
+            </abp-column>
+
+            <abp-column size="_3">
+                <abp-date-picker auto-update-input="false" today-button-classes="btn-primary" asp-for="StartDateFilterMax" label="@L["MaxStartDate"].Value" />
+            </abp-column>
+
+            <abp-column size="_3">
+                <abp-date-picker auto-update-input="false" today-button-classes="btn-primary" asp-for="EndDateFilterMin" label="@L["MinEndDate"].Value" />
+            </abp-column>
+
+            <abp-column size="_3">
+                <abp-date-picker auto-update-input="false" today-button-classes="btn-primary" asp-for="EndDateFilterMax" label="@L["MaxEndDate"].Value" />
+            </abp-column>
+
+            <abp-column size="_3">
+                <abp-date-picker auto-update-input="false" today-button-classes="btn-primary" asp-for="LockDateFilterMin" label="@L["MinLockDate"].Value" />
+            </abp-column>
+
+            <abp-column size="_3">
+                <abp-date-picker auto-update-input="false" today-button-classes="btn-primary" asp-for="LockDateFilterMax" label="@L["MaxLockDate"].Value" />
+            </abp-column>
+
+            <abp-column size="_3">
+                <abp-input asp-for="CalanderYearFilterMin" label="@L["MinCalanderYear"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="CalanderYearFilterMax" label="@L["MaxCalanderYear"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="YearEndMonthFilterMin" label="@L["MinYearEndMonth"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="YearEndMonthFilterMax" label="@L["MaxYearEndMonth"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="YearEndDayFilterMin" label="@L["MinYearEndDay"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="YearEndDayFilterMax" label="@L["MaxYearEndDay"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-select asp-for="IsCurrentFilter" label="@L["IsCurrent"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-select asp-for="IsLockedFilter" label="@L["IsLocked"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="NoOfPeriodsFilterMin" label="@L["MinNoOfPeriods"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="NoOfPeriodsFilterMax" label="@L["MaxNoOfPeriods"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-input asp-for="PeriodIntervalFilter" label="@L["PeriodInterval"].Value" />
+            </abp-column>
+            <abp-column size="_3">
+                <abp-select asp-for="FiscalYearStatusIdFilter" label="@L["FiscalYearStatus"].Value" />
+            </abp-column>
+@*//<suite-custom-code-block-5>*@
+@*//</suite-custom-code-block-5>*@
+        </abp-row>
+
+        <abp-table striped-rows="true" id="FiscalYearsTable">
+            <thead>
+				<tr>
+				    <th id="DetailRowTHeader"></th>
+					<th>@L["Actions"]</th>
+					<th>@L["FiscalYearName"]</th>
+					<th>@L["StartDate"]</th>
+					<th>@L["EndDate"]</th>
+					<th>@L["LockDate"]</th>
+					<th>@L["CalanderYear"]</th>
+					<th>@L["YearEndMonth"]</th>
+					<th>@L["YearEndDay"]</th>
+					<th>@L["IsCurrent"]</th>
+					<th>@L["IsLocked"]</th>
+					<th>@L["NoOfPeriods"]</th>
+					<th>@L["PeriodInterval"]</th>
+					<th>@L["FiscalYearStatus"]</th>
+@*//<suite-custom-code-block-6>*@
+@*//</suite-custom-code-block-6>*@
+				</tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
+
+@*//<suite-custom-code-block-7>*@
+@*//</suite-custom-code-block-7>*@

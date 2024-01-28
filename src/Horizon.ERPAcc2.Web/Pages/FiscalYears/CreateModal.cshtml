@@ -1,0 +1,64 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Horizon.ERPAcc2.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Horizon.ERPAcc2.Web.Pages.FiscalYears
+@using Horizon.ERPAcc2.FiscalYears;
+@using System.Globalization
+@inject IHtmlLocalizer<ERPAcc2Resource> L
+@model CreateModalModel
+@{
+    Layout = null;
+}
+
+
+<form data-ajaxForm="true" asp-page="/FiscalYears/CreateModal" autocomplete="off">
+    <abp-modal id="FiscalYearCreateModal">
+        <abp-modal-header title="@L["NewFiscalYear"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+@*//<suite-custom-code-block-1>*@
+@*//</suite-custom-code-block-1>*@
+                    
+                    
+
+            <abp-input asp-for="FiscalYear.FiscalYearName"   />
+
+            <abp-date-picker auto-update-input="true" today-button-classes="btn-primary" asp-for="FiscalYear.StartDate" data-date="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            <abp-date-picker auto-update-input="true" today-button-classes="btn-primary" asp-for="FiscalYear.EndDate" data-date="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            <abp-date-picker auto-update-input="false" today-button-classes="btn-primary" asp-for="FiscalYear.LockDate" data-date="" />
+
+            <abp-input asp-for="FiscalYear.CalanderYear"   />
+
+
+            <abp-input asp-for="FiscalYear.YearEndMonth"   />
+
+
+            <abp-input asp-for="FiscalYear.YearEndDay"   />
+
+
+            <abp-input asp-for="FiscalYear.IsCurrent"   />
+
+
+            <abp-input asp-for="FiscalYear.IsLocked"   />
+
+
+            <abp-input asp-for="FiscalYear.NoOfPeriods"   />
+
+
+            <abp-input asp-for="FiscalYear.PeriodInterval"   />
+
+                                <abp-select asp-for="FiscalYear.FiscalYearStatusId" asp-items="Model.FiscalYearStatusLookupList" label="@L["FiscalYearStatus"].Value"/>
+                
+@*//<suite-custom-code-block-2>*@
+@*//</suite-custom-code-block-2>*@
+@*//<suite-custom-code-block-3>*@
+@*//</suite-custom-code-block-3>*@
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)">
+@*//<suite-custom-code-block-4>*@
+@*//</suite-custom-code-block-4>*@
+        </abp-modal-footer>
+    </abp-modal>
+</form>

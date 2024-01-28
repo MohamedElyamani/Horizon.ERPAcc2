@@ -1,0 +1,74 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Horizon.ERPAcc2.Localization
+@using Horizon.ERPAcc2.Web.Pages.FiscalYearPeriods
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@using Horizon.ERPAcc2.FiscalYearPeriods;
+@using System.Globalization
+@inject IHtmlLocalizer<ERPAcc2Resource> L
+@model EditModalModel
+@{
+    Layout = null;
+}
+
+<form data-ajaxForm="true" asp-page="/FiscalYearPeriods/EditModal" autocomplete="off">
+    <abp-modal id="FiscalYearPeriodEditModal">
+        <abp-modal-header title="@L["Update"].Value"></abp-modal-header>
+
+        <abp-modal-body>
+@*//<suite-custom-code-block-1>*@
+@*//</suite-custom-code-block-1>*@
+                    <abp-input asp-for="Id" />
+                    <abp-input asp-for="FiscalYearPeriod.FiscalYearId" type="hidden" />
+
+                    
+
+            <abp-input asp-for="FiscalYearPeriod.PeriodName"   />
+
+
+            <abp-input asp-for="FiscalYearPeriod.CompanyId"   />
+
+            <abp-date-picker auto-update-input="true" today-button-classes="btn-primary" asp-for="FiscalYearPeriod.StartDate"  />
+            <abp-date-picker auto-update-input="true" today-button-classes="btn-primary" asp-for="FiscalYearPeriod.EndDate"  />
+
+            <abp-input asp-for="FiscalYearPeriod.PeriodStatusId"   />
+
+
+            <abp-input asp-for="FiscalYearPeriod.IsClosed"   />
+
+            <abp-date-picker auto-update-input="false" today-button-classes="btn-primary" asp-for="FiscalYearPeriod.CloseDate"  />
+
+            <abp-input asp-for="FiscalYearPeriod.TotalDepit"   data-val="false"/>
+
+
+            <abp-input asp-for="FiscalYearPeriod.TotalCredit"   data-val="false"/>
+
+
+            <abp-input asp-for="FiscalYearPeriod.ClosingBalance"   data-val="false"/>
+
+
+            <abp-input asp-for="FiscalYearPeriod.BeginingInventory"   data-val="false"/>
+
+
+            <abp-input asp-for="FiscalYearPeriod.Purchases"   data-val="false"/>
+
+
+            <abp-input asp-for="FiscalYearPeriod.EndiningInventory"   data-val="false"/>
+
+
+            <abp-input asp-for="FiscalYearPeriod.COGS"   data-val="false"/>
+
+                    
+                
+@*//<suite-custom-code-block-2>*@
+@*//</suite-custom-code-block-2>*@
+@*//<suite-custom-code-block-3>*@
+@*//</suite-custom-code-block-3>*@
+        </abp-modal-body>
+
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)">
+@*//<suite-custom-code-block-4>*@
+@*//</suite-custom-code-block-4>*@
+        </abp-modal-footer>
+    </abp-modal>
+</form>

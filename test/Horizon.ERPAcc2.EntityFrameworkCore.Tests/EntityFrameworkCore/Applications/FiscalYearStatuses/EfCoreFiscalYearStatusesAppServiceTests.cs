@@ -1,0 +1,7 @@
+using Horizon.ERPAcc2.FiscalYearStatuses;
+
+namespace Horizon.ERPAcc2.EntityFrameworkCore.Applications.FiscalYearStatuses;
+
+public class EfCoreFiscalYearStatusesAppServiceTests : FiscalYearStatusesAppServiceTests<ERPAcc2EntityFrameworkCoreTestModule>
+{
+}

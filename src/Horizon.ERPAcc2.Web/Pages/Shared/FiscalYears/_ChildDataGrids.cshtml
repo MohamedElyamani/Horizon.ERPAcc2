@@ -1,0 +1,55 @@
+@using Horizon.ERPAcc2.Localization
+@using Horizon.ERPAcc2.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<ERPAcc2Resource> L
+@inject IAuthorizationService Authorization
+@model Guid
+
+<div class="rounded p-3 pb-0 pt-1">
+    <ul class="nav nav-tabs" role="tablist">
+        @if (await Authorization.IsGrantedAsync(ERPAcc2Permissions.FiscalYearPeriods.Default))
+    {
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="FiscalYearPeriods-tab-@Model" data-bs-toggle="tab" data-bs-target="#FiscalYearPeriod-@Model" type="button" role="tab" aria-controls="FiscalYearPeriod" aria-selected="true">@L["FiscalYearPeriods"]</a>
+        </li>
+    }
+    </ul>
+    
+    <div class="tab-content pt-0">
+        @if (await Authorization.IsGrantedAsync(ERPAcc2Permissions.FiscalYearPeriods.Default))
+    {
+        <div class="tab-pane fade show active" id="FiscalYearPeriod-@Model" role="tabpanel" aria-labelledby="FiscalYearPeriod-tab-@Model">
+            @if (await Authorization.IsGrantedAsync(ERPAcc2Permissions.FiscalYearPeriods.Create))
+            {
+                <button id="NewFiscalYearPeriodButton" data-fiscalYear-id="@Model" class="btn btn-primary btn-sm float-end mb-3" type="button" data-busy-text="@L["Processing"]">
+                    <i class="fa fa-plus"></i> <span>@L["NewFiscalYearPeriod"]</span>
+                </button>
+            }
+        
+            <table class="table table-striped dataTable no-footer" striped-rows="true" id="FiscalYearPeriodsTable-@Model">
+                <thead>
+                <tr>
+                    <th>@L["Actions"]</th>
+                    					<th>@L["PeriodName"]</th>
+					<th>@L["CompanyId"]</th>
+					<th>@L["StartDate"]</th>
+					<th>@L["EndDate"]</th>
+					<th>@L["PeriodStatusId"]</th>
+					<th>@L["IsClosed"]</th>
+					<th>@L["CloseDate"]</th>
+					<th>@L["TotalDepit"]</th>
+					<th>@L["TotalCredit"]</th>
+					<th>@L["ClosingBalance"]</th>
+					<th>@L["BeginingInventory"]</th>
+					<th>@L["Purchases"]</th>
+					<th>@L["EndiningInventory"]</th>
+					<th>@L["COGS"]</th>
+
+                </tr>
+                </thead>
+            </table>
+        </div>
+    }
+    </div>
+</div>
